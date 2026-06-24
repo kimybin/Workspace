@@ -1,2 +1,23 @@
-.DS_Store
+# VSCode
 .vscode/
+
+# Rust 빌드 결과물
+**/target/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 컴파일된 바이너리 파일
+*.out
+*.exe
+
+# C++ 컴파일 중간 산출물
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+
+# 환경변수
+.env
