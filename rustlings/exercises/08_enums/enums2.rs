@@ -7,6 +7,12 @@ struct Point {
 #[derive(Debug)]
 enum Message {
     // TODO: Define the different variants used below.
+    // enum은 유닛/튜플/구조체-스타일 variant를 모두 가질 수 있음 
+    Resize {width: u8, height: u8},
+    Move(Point), // // Point라는 타입 하나(구조체)를 담는 튜플 variant
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
 }
 
 impl Message {

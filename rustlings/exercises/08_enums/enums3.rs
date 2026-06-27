@@ -3,12 +3,13 @@ struct Point {
     y: u64,
 }
 
+// Message describes "what happened" (an event), not the program's state itself.
 enum Message {
-    Resize { width: u64, height: u64 },
-    Move(Point),
-    Echo(String),
-    ChangeColor(u8, u8, u8),
-    Quit,
+    Resize { width: u64, height: u64 }, // struct-style variant: named fields
+    Move(Point),                        // tuple variant holding another struct
+    Echo(String),                       // tuple variant holding a single value
+    ChangeColor(u8, u8, u8),            // tuple variant holding 3 positional values
+    Quit,                               // unit variant: no data at all
 }
 
 struct State {
@@ -43,9 +44,22 @@ impl State {
         self.quit = true;
     }
 
+    // process is the dispatcher: it inspects which Message variant arrived
+    // and calls the matching state-mutating method above. It returns nothing
+    // (`()`) — the point is the side effect on `self`, not a return value.
     fn process(&mut self, message: Message) {
-        // TODO: Create a match expression to process the different message
-        // variants using the methods defined above.
+        use Message::*; // lets us write `Resize` instead of `Message::Resize`
+
+        // match must be exhaustive: every variant needs an arm (or `_`).
+        // Each arm destructures the variant's data into named bindings,
+        // then passes those exact names into the corresponding method call.
+        match message {
+            Resize { width, height } => self.resize(width, height),
+            Move(point) => self.move_position(point),
+            Echo(s) => self.echo(s),
+            ChangeColor(red, green, blue) => self.change_color(red, green, blue),
+            Quit => self.quit(),
+        }
     }
 }
 
