@@ -3,8 +3,8 @@
 
 mod delicious_snacks {
     // TODO: Add the following two `use` statements after fixing them.
-    // use self::fruits::PEAR as ???;
-    // use self::veggies::CUCUMBER as ???;
+    pub use self::fruits::PEAR as fruit; // pub is required!
+    pub use self::veggies::CUCUMBER as veggie; // 외부에서도 이 모듈을 통해 접근 가능하게 공개
 
     mod fruits {
         pub const PEAR: &str = "Pear";

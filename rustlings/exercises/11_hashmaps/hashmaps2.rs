@@ -32,6 +32,11 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // TODO: Insert new fruits if they are not already present in the
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
+        // 이미 있는 과일은 다시 넣으면 안 되니 확인 
+        if !basket.contains_key(&fruit) {
+            basket.insert(fruit, 1); // 없는 과일만 넣기 
+        }
+        
     }
 }
 
@@ -44,12 +49,14 @@ mod tests {
     use super::*;
 
     // Don't modify this function!
+    // Apple(4), Mango(2), Lychee(5)만 들어있는 초기 basket을 만드는 테스트 헬퍼
     fn get_fruit_basket() -> HashMap<Fruit, u32> {
         let content = [(Fruit::Apple, 4), (Fruit::Mango, 2), (Fruit::Lychee, 5)];
         HashMap::from_iter(content)
     }
 
     #[test]
+    // 기존 Apple/Mango/Lychee 값이 그대로인지 확인 (덮어쓰지 않았는지 체크)
     fn test_given_fruits_are_not_modified() {
         let mut basket = get_fruit_basket();
         fruit_basket(&mut basket);
@@ -59,6 +66,7 @@ mod tests {
     }
 
     #[test]
+    // 5종류(Apple, Banana, Mango, Lychee, Pineapple) 전부 들어있는지 체크
     fn at_least_five_types_of_fruits() {
         let mut basket = get_fruit_basket();
         fruit_basket(&mut basket);
@@ -67,6 +75,7 @@ mod tests {
     }
 
     #[test]
+    // 전체 합이 기존 11에서 더 늘어났는지(Banana/Pineapple 추가분) 체크
     fn greater_than_eleven_fruits() {
         let mut basket = get_fruit_basket();
         fruit_basket(&mut basket);
@@ -75,6 +84,7 @@ mod tests {
     }
 
     #[test]
+    // 5종류 각각의 개수가 0보다 큰지(빠진 종류 없는지) 최종 체크
     fn all_fruit_types_in_basket() {
         let fruit_kinds = [
             Fruit::Apple,
