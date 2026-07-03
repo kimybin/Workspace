@@ -5,7 +5,7 @@ struct Point {
 }
 
 fn main() {
-    let optional_point = Some(Point { x: 100, y: 200 });
+    let optional_point = Some(&Point { x: 100, y: 200 });
 
     // TODO: Fix the compiler error by adding something to this match statement.
     match optional_point {

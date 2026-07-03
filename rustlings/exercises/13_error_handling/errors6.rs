@@ -6,26 +6,31 @@
 
 use std::num::ParseIntError;
 
+// 값 생성 시 발생할 수 있는 에러 종류
 #[derive(PartialEq, Debug)]
 enum CreationError {
-    Negative,
-    Zero,
+    Negative, // 음수인 경우
+    Zero,     // 0인 경우
 }
 
-// A custom error type that we will be using in `PositiveNonzeroInteger::parse`.
+// parse() 함수에서 반환할 통합 에러 타입
+// Box<dyn Error> 대신 이걸 쓰면 호출자가 에러 종류를 구분해서 처리할 수 있음
 #[derive(PartialEq, Debug)]
 enum ParsePosNonzeroError {
-    Creation(CreationError),
-    ParseInt(ParseIntError),
+    Creation(CreationError), // 값 생성 에러 (음수, 0)
+    ParseInt(ParseIntError), // 문자열 → 숫자 변환 에러 ("not a number" 같은 경우)
 }
 
 impl ParsePosNonzeroError {
+    // CreationError → ParsePosNonzeroError 로 변환
     fn from_creation(err: CreationError) -> Self {
         Self::Creation(err)
     }
 
-    // TODO: Add another error conversion function here.
-    // fn from_parse_int(???) -> Self { ??? }
+    // ParseIntError → ParsePosNonzeroError 로 변환
+    fn from_parse_int(err: ParseIntError) -> Self {
+        Self::ParseInt(err)
+    }
 }
 
 #[derive(PartialEq, Debug)]
@@ -41,9 +46,11 @@ impl PositiveNonzeroInteger {
     }
 
     fn parse(s: &str) -> Result<Self, ParsePosNonzeroError> {
-        // TODO: change this to return an appropriate error instead of panicking
-        // when `parse()` returns an error.
-        let x: i64 = s.parse().unwrap();
+        // s.parse() 는 표준 라이브러리의 문자열→숫자 변환 함수
+        // 실패 시 ParseIntError 반환 → map_err로 ParsePosNonzeroError 타입으로 변환
+        // ? 는 에러면 조기 반환, 성공이면 x에 값 바인딩
+        let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parse_int)?;
+        // CreationError 도 같은 방식으로 ParsePosNonzeroError 로 변환 (? 없어도 마지막 값이 반환됨)
         Self::new(x).map_err(ParsePosNonzeroError::from_creation)
     }
 }
