@@ -21,3 +21,13 @@ Thumbs.db
 
 # 환경변수
 .env
+
+# C++ 확장자 없는 실행 파일 (programmers 폴더 전용)
+c++/programmers/**/*
+!c++/programmers/**/*.cpp
+!c++/programmers/**/*.h
+!c++/programmers/**/*.hpp
+!c++/programmers/**/*/
+
+# C/C++ Runner 빌드 결과물
+**/build/
