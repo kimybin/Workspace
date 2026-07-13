@@ -6,7 +6,11 @@ fn main() {
     // TODO: Fix the compiler error by annotating the type of the vector
     // `Vec<T>`. Choose `T` as some integer type that can be created from
     // `u8` and `i8`.
-    let mut numbers = Vec::new();
+
+    // Both `u8` and `i8` are pushed via `.into()`, so the Vec's element type T
+    // must be a single type that both `From<u8>` and `From<i8>` are implemented for.
+    // `i16` is the smallest type satisfying both.
+    let mut numbers: Vec<i16> = Vec::new();
 
     // Don't change the lines below.
     let n1: u8 = 42;
