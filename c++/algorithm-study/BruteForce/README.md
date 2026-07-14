@@ -1,6 +1,6 @@
 ### 2. MockExam
 
-***✅ 반복 패턴 인덱싱: 나머지 연산(%)**
+**✅ 반복 패턴 인덱싱: 나머지 연산(%)**
 - 각 수포자의 찍기 패턴은 정해진 길이(5, 8, 10)만큼 반복된다.
 - i번째 문제에서 패턴의 몇 번째 값을 봐야 하는가?
     - 정답: 패턴배열[i % 패턴배열.size()]
@@ -24,8 +24,7 @@ for(int i = 0; num1.size()%i < answers.size(); i++) // i=0일 때 0으로 나눔
 ---
 
 **⭕️ 참고용 좋은 코드**
-```
-vector<int> one = {1,2,3,4,5};
+```vector<int> one = {1,2,3,4,5};
 vector<int> two = {2,1,2,3,2,4,2,5};
 vector<int> thr = {3,3,1,1,2,2,4,4,5,5};
 
@@ -42,6 +41,5 @@ vector<int> solution(vector<int> answers) {
         if(they[i] == they_max) answer.push_back(i+1);
     }
     return answer;
-}
-```
+}```
 
