@@ -21,7 +21,7 @@ impl OtherTrait for OtherStruct {}
 // TODO: Fix the compiler error by only changing the signature of this function.
 // Trait bound(+) is a constraint that guarantees the parameter implements multiple traits simultaneously
 // impl Trait: each param can be a different type / <T: Trait>: all params sharing T must be the same type
-fn some_func(item: ???) -> bool {
+fn some_func<T: SomeTrait + OtherTrait>(item: T) -> bool {
     item.some_function() && item.other_function()
 }
 
