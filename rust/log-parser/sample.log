@@ -1,0 +1,11 @@
+[2026-08-03 09:12:01][INFO] Server started on port 8080
+[2026-08-03 09:12:05][INFO] Connected to database
+[2026-08-03 09:15:22][WARN] Slow query detected: 1200ms
+[2026-08-03 09:18:47][ERROR] Failed to connect to Redis
+[2026-08-03 09:19:03][INFO] Retrying Redis connection
+[2026-08-03 09:19:05][INFO] Redis connection restored
+[2026-08-03 09:22:10][DEBUG] Cache hit ratio: 87%
+[2026-08-03 09:25:33][ERROR] NullPointerException in InventoryService
+[2026-08-03 09:25:34][ERROR] Request failed with status 500
+[2026-08-03 09:30:00][WARN] Memory usage above 80%
+[2026-08-03 09:35:12][INFO] Scheduled job completed

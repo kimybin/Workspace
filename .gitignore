@@ -3,6 +3,7 @@
 
 # Rust 빌드 결과물
 **/target/
+target/
 
 # OS
 .DS_Store
@@ -31,3 +32,6 @@ c++/programmers/**/*
 
 # C/C++ Runner 빌드 결과물
 **/build/
+
+# lldb 디버그 심볼 번들
+*.dSYM/
