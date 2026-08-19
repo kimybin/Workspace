@@ -36,9 +36,9 @@ mod tests {
     // TODO: This test should check if the program panics when we try to create
     // a rectangle with negative width.
     #[test]
-    #[should_panic] // It's normal for the code to panic
+    #[should_panic] // It's normal for the code to panic "패닉이 발생하면 성공"
     fn negative_width() {
-        let _rect = Rectangle::new(-10, 10);
+        let _rect = Rectangle::new(-10, 10); // panic!이 발생하는 게 정상 동작
     }
 
     // TODO: This test should check if the program panics when we try to create
